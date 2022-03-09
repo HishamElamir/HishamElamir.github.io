@@ -1,0 +1,46 @@
+.home .banner {
+  background-image: url("/assets/images/street.jpg");
+  height: 25rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home .site-header {
+    background: #323232;
+    color: #969696
+}
+
+.home .banner .collection-head {
+    color: #f4eff3;
+    background: 0 0;
+    box-shadow: none;
+    -webkit-box-shadow: none
+}
+
+.home .site-header {
+    border-bottom: none
+}
+
+.home .site-header h1 a {
+    color: #f4eff3
+}
+
+.home .site-header .site-header-nav-item {
+    color: rgba(255, 255, 255, .5)
+}
+
+.home .site-header .site-header-nav-item:hover {
+    color: #f4eff3
+}
+
+
+@media (max-width:50em) {
+  .home .collapsed .icon-bar {
+    background-color:#f4eff3;
+  }
+
+  .home .collection-head .collection-header {
+    font-size: 1.25em;
+  }
+}
