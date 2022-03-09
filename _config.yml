@@ -1,3 +1,85 @@
-theme: jekyll-theme-cayman
-title: Octocat's homepage
-description: Bookmark this to keep an eye on my project updates!
+# ---------------- #
+#   Main Configs   #
+# ---------------- #
+baseurl:
+url: HishamElamir.github.io
+date_format: "ordinal"
+title: Data Drop (H's Blog)
+subtitle: "By - Hisham El-Amir"
+description: "Personal Blog or Whatever"
+keywords: Diary, Life, Techonlogy, github pages, Post, North America, Leetcode, Interview
+timezone: America/Vancouver
+encoding: "utf-8"
+side_bar_repo_limit: 5
+
+# ---------------- #
+#      Author      #
+# ---------------- #
+author: Hisham
+organization: 
+organization_url: 
+github_username: HishamElamir
+location: Cairo, Egypt
+email: hishamelamir001@gmail.com
+
+# ---------------- #
+#    Navigation    #
+# ---------------- #
+navs:
+  -
+    href: /
+    label: Home
+
+  -
+    href: /categories/
+    label: Categories
+
+  -
+    href: /open-source/
+    label: Github Repos
+
+  -
+    href: /about/
+    label: About
+
+# ---------------- #
+#       RSS        #
+# ---------------- #
+subscribe_rss: /feed.xml
+
+# ---------------- #
+#      Jekyll      #
+# ---------------- #
+markdown: kramdown
+kramdown:
+    input: GFM
+highlighter: rouge
+paginate: 10
+lsi: false
+quiet: false
+excerpt_separator: "\n\n"
+permalink: /:year/:month/:day/:title/
+plugins:
+    - jekyll-github-metadata
+    - rouge
+#     - jekyll-html-pipeline
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jekyll-feed
+    - jemoji
+    - jekyll-seo-tag
+
+repository: HishamElamir/HishamElamir.github.io
+
+# ---------------- #
+#      Search      #
+# ---------------- #
+simple_jekyll_search:
+    fulltext: false
+    limit: 10
+
+# ---------------- #
+#    Analytics     #
+# ---------------- #
+google:
+    analytics_id: 
