@@ -2,13 +2,13 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: HishamElamir.github.io
+url: https://hishamelamir.github.io
 date_format: "ordinal"
-title: Data Drop (H's Blog)
-subtitle: "By - Hisham El-Amir"
-description: "Personal Blog or Whatever"
+title: Hisham El-Amir (Tech Blog)
+subtitle: "Data + Science"
+description: "Personal Blog"
 keywords: Diary, Life, Techonlogy, github pages, Post, North America, Leetcode, Interview
-timezone: America/Vancouver
+timezone: Egypy/Cairo
 encoding: "utf-8"
 side_bar_repo_limit: 5
 
@@ -18,8 +18,8 @@ side_bar_repo_limit: 5
 author: Hisham
 organization: 
 organization_url: 
-github_username: HishamElamir
-location: Cairo, Egypt
+github_username: hishamelamir
+location: Vancouver, Canada
 email: hishamelamir001@gmail.com
 
 # ---------------- #
@@ -69,17 +69,19 @@ plugins:
     - jemoji
     - jekyll-seo-tag
 
-repository: HishamElamir/HishamElamir.github.io
+repository: hishamelamir/hishamelamir.github.io
 
 # ---------------- #
 #      Search      #
 # ---------------- #
 simple_jekyll_search:
+    # 是否支持全文搜索
     fulltext: false
+    # 最多显示多少条搜索结果
     limit: 10
 
 # ---------------- #
 #    Analytics     #
 # ---------------- #
 google:
-    analytics_id: 
+    analytics_id: UA-111234132
