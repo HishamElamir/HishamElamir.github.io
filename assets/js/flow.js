@@ -66,4 +66,4 @@ $(function () {
   })
 });
 
-// code from https://bqxu.me/_assets/flow.js
+// code from https://bqxu.me/assets/flow.js
