@@ -2,7 +2,7 @@
 layout: page
 title: About
 description: The World Needs Programmers
-keywords: Jeffrey, zhenyu
+keywords: El-Amir, Hisham
 comments: true
 menu: About
 permalink: /about/

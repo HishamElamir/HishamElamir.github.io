@@ -2,9 +2,9 @@
 layout: categories
 title: Categories
 description: categories template
-keywords: 分类
+keywords: categories, data, science, math
 comments: false
-menu: 分类
+menu: Menu
 permalink: /categories/
 ---
 

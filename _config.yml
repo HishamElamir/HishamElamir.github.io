@@ -19,7 +19,7 @@ author: Hisham
 organization: 
 organization_url: 
 github_username: hishamelamir
-location: Vancouver, Canada
+location: Cairo, Egypt
 email: hishamelamir001@gmail.com
 
 # ---------------- #
@@ -75,13 +75,11 @@ repository: hishamelamir/hishamelamir.github.io
 #      Search      #
 # ---------------- #
 simple_jekyll_search:
-    # 是否支持全文搜索
     fulltext: false
-    # 最多显示多少条搜索结果
     limit: 10
 
 # ---------------- #
 #    Analytics     #
 # ---------------- #
 google:
-    analytics_id: UA-111234132
+    analytics_id: UA-140244218-1
