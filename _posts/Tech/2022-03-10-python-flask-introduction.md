@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Flask - Introduction
+title: [Flask] 01. Introduction
 categories: Tech-Post Python Flask
 description: An introduction to Python Flask
 keywords: Python Flask Web Framework
 ---
 
-![Closure](/images/blog/closure.jpeg)
+![Flask Logo](/images/blog/closure.jpeg)
 
 
 ## Introdiction
