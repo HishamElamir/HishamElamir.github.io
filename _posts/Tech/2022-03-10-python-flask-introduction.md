@@ -1,6 +1,6 @@
 ---
 layout: post
-title: [Flask] 01. Introduction
+title: (Flask Series) 01. Introduction
 categories: Tech-Post Python Flask
 description: An introduction to Python Flask
 keywords: Python Flask Web Framework
