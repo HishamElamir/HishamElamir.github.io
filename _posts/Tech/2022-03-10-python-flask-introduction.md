@@ -9,177 +9,233 @@ keywords: Python Flask Web Framework
 ![Flask Logo](/images/blog/closure.jpeg)
 
 
+In this part of the series, you will learn about the different parts of a Flask application. You will
+also write and run the first Flask web application.
+
+
 ## Introdiction
 
-闭包的概念实在是很绕，知乎，掘金，简书， stack overflow上各种大神给了自以为很专业的解释。然而这些解释其实是建立在你已经理解闭包的基础上才能完全看懂的。我个人在学习闭包初期的时候，看了解释反而更迷惑。索性我们就看官网解释吧。
-
-A closure is the combination of a function bundled together (enclosed) with references to its surrounding state (the lexical environment). In other words, a closure gives you access to an outer function’s scope from an inner function. In JavaScript, closures are created every time a function is created, at function creation time.
-
-翻译过来：
-
-一个函数和对其周围状态（lexical environment，词法环境）的引用捆绑在一起（或者说函数被引用包围），这样的组合就是闭包（closure）。也就是说，闭包让你可以在一个内层函数中访问到其外层函数的作用域。在 JavaScript 中，每当创建一个函数，闭包就会在函数创建的同时被创建出来。
-
-这段翻译中，我个人认为两点最为重要
-* 闭包让你可以在一个内层函数中访问到其外层函数的作用域
-* 闭包会在函数创建的同时被创建出来
-
-如何理解？
-
-闭包让你可以在一个内层函数中访问到其外层函数的作用域，此处注意是访问到**外层函数的作用域**而不是**外层作用域**说白了，闭包建立在函数嵌套的基础上，允许内层函数访问外层函数作用域，内层函数顾名思义，就是在函数嵌套中，嵌套在函数里面的函数，而外层函数则是针对内层函数而言包裹其他函数的函数，好了已经开始比较绕了。至于怎么访问，我们一会再说。
-
-闭包会在函数创建的同时被创建出来，这句话是这样理解的，闭包的作用域由内层函数创建时所在的作用域决定。后面我也会举例说明。
-
-简单的了解一下闭包的概念，接下来举例说明
-
-## 闭包的形式
-
-闭包的实现形式有两种
-* 函数作为参数传入另一个函数。（**注意：作为参数的函数就是内层函数，而接受的该函数作为参数的函数就是外层函数**）
-* 函数作为返回值返回。（**注意：返回的函数就是内层函数**）
-
-相信有过前端经验的小伙伴都用过闭包，最典型的就是回调函数（call back）和事件绑定，它们正是以函数作为参数实现闭包的一种形式。至于函数作为返回值，我们也不陌生，前端代码模块化就是其中一种。
-
-如果闭包的概念实在难理解，那么以下的实现形式会让你更容易明白闭包。
-
-接下来看一下代码
-
-### 闭包，函数作为参数
-```javascript
-let name = 'Lili'
-
-function getStudent(func){
-  let name='John'
-  let age = 20
-  func(age)
-  
-}
-
-function display(age){
-  console.log(name,age)
-}
-
-getStudent(display)
 
 
-// result: "Lili", 20
+## Initialization
+
+All Flask applications must create an application instance. The web server passes all 
+requests it receives from clients to this object for handling, using a protocol called 
+Web Server Gateway Interface (WSGI, pronounced “wiz-ghee”), cool right 😎.
+The application  instance is an object of class Flask, usually created as follows:
+
+```python
+from flask import Flask
+app = Flask(__name__)
+
 ```
-以上函数中，display函数（**内层参数**）作为参数传入到getStudent函数（**外层函数**）中，并且得到了getStudent中的age参数（**外层函数作用域中的参数**），最终显示出了学生的姓名和年龄。现在回看一下这句话“闭包让你可以在一个内层函数中访问到其外层函数的作用域”是不是就不难理解了？还没结束，有的小伙伴可能会问，为什么打印出来的是“Lili”而不是“John”，明明John离display函数更近一些。
 
-这就要说闭包的第二个概念，闭包的作用域由内层函数创建时所在的作用域决定。内层函数（display）创建时或者说定义时所在的作用域位于全局作用域中，全局作用域中存在name参数，自然而然，这个name就被闭包函数征用了。至于外层函数中的name虽然离得比较近，可是却有一道深深的屏障挡在内外层函数中间。
+The only required argument to the Flask class constructor is the name of the main
+module or package of the application. For most applications, Python’s `__name__` 
+variable is the correct value for this argument.
 
+  > What is the `__name__` 😵???
+  > The `__name__` argument that is passed to the Flask application constructor is a source of confusion among new Flask developers.
+  > Flask uses this argument to determine the location of the application, which in turn allows it to locate other files that are part of the application, such as images and templates.
 
-### 闭包，函数作为返回值
-```javascript
-let name = 'Lili'
-
-function getStudent(){
-  let name = 'John'
-  return function display(){
-    console.log(name)
-  }
-}
-
-let getInfo = getStudent()
-getInfo() 
+Later in the series, you will get to know more complex ways to initialize a Flask application,
+but this time, for a simple application, this is all that is needed.
 
 
-// result: "John"
+
+## Routes and View Functions
+
+Clients (web browsers) will send requests to the web server, which in turn sends
+them to the Flask application instance. After this the Flask application instance
+needs to know what code it needs to run for each URL requested,
+so it keeps a mapping of URLs to Python functions. The association between a URL and the function that handles it is called a route.
+
+Per each request you should get one code of the following list:
+1. Informational responses (_100–199_)
+2. Successful responses (_200–299_)
+3. Redirection messages (_300–399_)
+4. Client error responses (_400–499_)
+5. Server error responses (_500–599_)
+
+
+The most convenient way to define a route in a Flask application is through the
+`@app.route` decorator exposed by the application instance. The following example
+shows how a route is declared using this decorator:
+
+```python
+@app.route('/')
+def index():
+  return '<h1>Hello World!</h1>'
 ```
-看完第一个例子，第二个例子也不难理解了。display函数（**内层函数**）作为getStudent函数（**外层函数**）的返回值返回，我们定义一个变量getInfo将返回的内层函数赋值给这个变量，该变量就变成了一个函数，此时执行getInfo()后，就会返回学生信息。同样的，内层函数（display）定义在外层函数（getStudent）的作用域中，所以此时变量name由定义内层函数的作用域提供了，因此name变成了“John”。
 
-## 应用场景
+> Decorators are a standard feature of the Python language.
+> A common use of decorators is to register methods as handler functions to be invoked when certain events occur.
 
-基于闭包的形式，我们在web开发当中会大量的用到，比如是针对dom元素绑定事件的操作，其中触发事件就用到了回调函数（闭包，函数作为参数）例如，onclick， onchange， onload等等还有异步编程例如ajax。
+The previous example registers method `index()` as the handler for the application’s
+root URL. While the `@app.route` decorator is the preferred method to register view
+methods, Flask also offers a more traditional way to set up the application routes
+with the `app.add_url_rule()` method, which in its most basic form takes three arguments:
+* The URL.
+* The endpoint name.
+* the view function.
 
-此外闭包可以用来做访问控制，例如在函数中创建局部变量，同时开放一个对外的接口函数（闭包，闭包函数作为返回值）允许外部访问函数内部的局部变量(可以避免污染全局作用域的同时，又有效的防止私有数据泄漏)，这也是模块化编程的基础。
+The following example uses `app.add_url_rule()` to register an `index()` method that is equivalent to the one shown previously:
 
-最后还有一个重要的应用，由于闭包可以让变量始终保存在内存中。因而我们可以实现函数缓存，但是有利有弊。少量的缓存可以起到优化的作用（例如防抖，debounce），但是如果乱用闭包作为缓存的话，该释放的内存没有得到释放就会导致内存泄漏。这一点用代码来稍稍演示展示一下
+```python
+def index():
+ return '<h1>Hello World!</h1>'
 
-### 一般函数执行完后，会释放内存
-```javascript
-let a = 100
-
-function display(){
-let b = 10
-	return a+b
-}
-
-console.log(display(a))
-
-// result: 100
+app.add_url_rule('/', 'index', index)
 ```
-在一般函数中，函数执行完后，js的垃圾回收机制会认为a和b已经完成了任务，未来不再使用，因此从内存中清空， 因此a,b将从内存中消失（垃圾回收）
 
-### 在闭包中，函数执行完后，不会释放内存
-```javascript
-let a = 100
+Users Methods like `index()` that handle application URLs are called *view functions*.
+If the application is deployed on a server associated with the `www.example.com` domain
+name, then navigating to `http://www.example.com/` in your browser would trigger
+`index()` to run on the server.
 
-function display(){
-	return function (num){
-		let b = 10
-		return num+b
-	}
-}
+The return value of this view method is the response the client receives.
+If the client is a web browser, this response is the document that is displayed to 
+the user in the browser window. 
+A response returned by a view function can be a simple string with HTML content, 
+but it can also take more complex forms, as you will see later.
 
-let call = display()
-console.log(call(a))
 
-// result: 100
+Embedding response strings with HTML code in Python source files leads 
+to code that is difficult to maintain. 
+
+The examples in this part of the series do it only to introduce the concept of responses. 
+You will learn a better way to generate HTML responses in next parts of the series.
+
+
+If you pay attention to how some URLs for services that you use every day are formed, 
+you will notice that many have variable sections. 
+For example, the URL for your Facebook profile page has the format 
+`https://www.facebook.com/<your-name>`, 
+which includes your username, making it different for each user. 
+Flask supports these types of URLs using a special syntax in the `@app.route` decorator. 
+The following example defines a route that has a dynamic component:
+
+```python
+@app.route('/user/<name>')
+def user(name):
+ return '<h1>Hello, {}!</h1>'.format(name)
 ```
-而在闭包中，函数执行完后，返回了一个新的函数。这意味着，对于返回的这个函数来说，随时都有可能被调用执行。因此，js垃圾回收机制会判定a与b依然有利用的价值，不予回收，所以a和b依然会保留在内存中。
 
-### 经典面试题
+The portion of the route URL enclosed in angle brackets is the dynamic part. 
+Any URLs that match the static portions will be mapped to this route, 
+and when the view function is invoked, the dynamic component will be passed as an argument. 
 
-创建10个div标签，内容为该标签的index，点击标签，弹出窗口现实该标签对应的index。
+In the preceding example, 
+the name argument is used to generate a response that includes a personalized greeting. 
+The dynamic components in routes are strings by default but can also be of different types. 
+For example, the route `/user/<int:id>` would match only URLs that have an integer 
+in the id dynamic segment, such as `/user/123`.
 
-```javascript
-for (var i = 0; i < 10; i++) {
-  var div = document.createElement('div')
-  div.innerHTML = i + '<br>'
-  div.addEventListener('click', function(e) {
-    alert(i)
-  })
-  document.body.appendChild(div)
-}
+Flask supports the following data types:
+* `string`
+* `int`
+* `float`
+* `path for routes`, where:
+  > The path type is a special `string` type that can include _forward slashes_, unlike the string type.
+
+
+
+## Putting All Together
+
+In the previous sections you learned about the different parts of a Flask web application,
+and now it is time to write your first one.
+
+The following application script shown in code snippet below defines
+an application instance and a single route and view function, as described earlier.
+
+```python
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+  return '<h1>Hello World!</h1>'
 ```
-以上为错误的做法！
-打印出来的结果将是10个div标签但是点击任何一个标签弹窗只会显示10。
-错误的原因和闭包的特性有关。
-我们知道，闭包会存在于内存中，不会被回收掉。在上述例子中，dom绑定click事件就是一个闭包，执行完for循环后，每个click事件都继续存在于内存中，以备随时调用。而i在for循环执行完后变成了10， 这时候不管我们调用哪一个click事件都只会显示10，因为此时所有的事件都在同一个作用域中。
 
-正确的做法是每执行一次循环立刻将当前的作用域绑定到事件上去，这样就算执行外for循环后，每个事件的作用域是独立的，不再互相干扰。调用每个事件就会得到正确的值。
+Will put the whole codes in the github repo for the series, 
+just you can clone and play with the code as you want, 
+and will make it much easier for you to learn and train you skills.
 
-方法有两种
-### 方法1 自调用函数
-```javascript
-for (var i = 0; i < 10; i++) {
-	(function(i){
-    var div = document.createElement('div')
-    div.innerHTML = i + '<br>'
-    div.addEventListener('click', function(e) {
-      alert(i)
-    })
-    document.body.appendChild(div)
-  })(i)
-}
+
+
+## Development Web Server
+
+Flask applications include a development web server 
+that can be started with the flask run command. 
+
+This command looks for the name of the Python script that contains 
+the application instance in the FLASK_APP environment variable.
+
+To start the the application from the previous section, 
+first make sure the virtual environment you created earlier is activated 
+and has Flask installed in it. 
+
+For Linux and macOS users, start the web server as follows:
+
+```shell
+(venv) $ export FLASK_APP=hello.py
+(venv) $ flask run
 ```
-每循环一次，自调用函数会执行一次，将当前循环作用域中的i绑定到自调用函数的作用域里。这样每个事件的作用域都是分开的。
 
-
-### 方法2 使用let创建块作用域
-```javascript
-for (let i = 0; i < 10; i++) {
-  var div = document.createElement('div')
-  div.innerHTML = i + '<br>'
-  div.addEventListener('click', function(e) {
-    alert(i)
-  })
-  document.body.appendChild(div)
-}
+and will get the output:
 ```
-let是es6推出的新语法，它的作用就是规定变量为块作用域内所用（ES6之前用var,但是var创建的是全局变量）其实这种写法和第一种一样。都是把当前循环的作用域规定在一个块内，而这个块就是我们事件绑定所在的作用域。从而达到作用域分割的目的。
+* Serving Flask app "hello"
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
 
-## 总结
-闭包在开发中应用的极为广泛。是学习模块编程，类，异步，以及各种框架和库等的重要基础。闭包不能滥用，闭包的特性导致是把双刃剑，用得好可以提升性能，用得不好反而会降低性能。用的时候一定要慎重。
+For Microsoft Windows users, the only difference is in how 
+the `FLASK_APP` environment variable is set:
+
+```shell
+(venv) $ set FLASK_APP=hello.py
+(venv) $ flask run
+```
+
+and of course you will get:
+```
+ * Serving Flask app "hello"
+ * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+```
+
+Once the server starts up, it goes into a loop that accepts requests and services them.
+This loop continues until you stop the application by pressing `Ctrl+C`.
+
+With the server running, open your web browser and type `http://localhost:5000/`
+in the address bar.
 
 
+If you type anything else after the base URL, the application will not know how to
+handle it and will return an *error code* `404` to the browser—the familiar error that
+you get when you navigate to a web page that does not exist.
+
+The web server provided by Flask is intended to be used only for development and testing.
+You will learn about production web servers in next parts of the series.
+
+
+The Flask development web server can also be started programmatically
+by invoking the `app.run()` method. As you can put the following snippet at the end of the file:
+
+```python
+if __name__ == '__main__':
+  app.run()
+```
+
+While the flask run command makes this practice unnecessary,
+the `app.run()` method can still be useful on certain occasions, such
+as _unit testing_, as you will learn in next parts of the Flask series.
+
+
+## What Now 🤔
+
+This part of the series is ends here, but the series continues.
+Stay tuned for the next part, if not uploaded yet 😅.
+And if you have any feedback, you can send me on email or twitter.
+
+See You Soon,
+Hisham.
