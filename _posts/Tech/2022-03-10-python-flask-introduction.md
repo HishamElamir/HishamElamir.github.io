@@ -6,7 +6,7 @@ description: An introduction to Python Flask
 keywords: Python Flask Web Framework
 ---
 
-![Flask Logo](/images/blog/closure.jpeg)
+![Flask Logo](/images/blog/flask.png])
 
 
 In this part of the series, you will learn about the different parts of a Flask application. You will
