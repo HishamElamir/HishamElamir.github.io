@@ -6,7 +6,7 @@ description: An Introduction to Intermidiate Statistics
 keywords: Statistics Math Advanced Data Analysis
 ---
 
-![Intermidiate Stats](/images/blog/intermidiate-stats.png])
+![Intermidiate Stats](/images/blog/intermidiate-stats.png)
 
 ## Introduction
 
