@@ -1,12 +1,12 @@
 ---
 layout: post
-title: (Intermidiate Statistics) 01. It Is Not About Statistics Anymore
+title: (Intermediate Statistics) 01. It Is Not About Statistics Anymore
 categories: Math-Post Data Statistics
-description: An Introduction to Intermidiate Statistics
+description: An Introduction to Intermediate Statistics
 keywords: Statistics Math Advanced Data Analysis
 ---
 
-![Intermidiate Stats](/images/blog/intermidiate-stats.png)
+![Intermediate Stats](/images/blog/intermidiate-stats.png)
 
 ## Introduction
 
@@ -112,7 +112,7 @@ complicated process for analyzing data has now become as easy as checking your e
 
 
 
-> *Bottom line:* Today’s software packages are too good to be true if you don’t have a clear and 
+> **Bottom line:** Today’s software packages are too good to be true if you don’t have a clear and 
 thorough understanding of the intermediate level of statistics that lie underneath them. 
 Here’s the good news, though. By following me throughout the series, you gain the understanding you need to set you up for success. 
 
