@@ -13,7 +13,7 @@ In this part of the series, you will learn about the different parts of a Flask 
 also write and run the first Flask web application.
 
 
-## Introdiction
+## Introduction
 
 Flask is a small framework by most standards—small enough to be called a “microframework,” 
 and small enough that once you become familiar with it, you will likely
@@ -45,20 +45,20 @@ The **config** attribute is a subclass of the dictionary data type, and we can m
 just like any dictionary.
 
 For instance, to run our application in the debug mode, we can write the following:
-    ```python
-        app = Flask(__name__)
-        app.config['DEBUG'] = True
-    ```
+```python
+    app = Flask(__name__)
+    app.config['DEBUG'] = True
+```
 
 The debug **Boolean** can also be set at the Flask object level rather than at the config level:
-    ```python
-        app.debug = True
-    ```
+```python
+    app.debug = True
+```
 
 Alternatively, we can use this line of code:
-    ```python
-        app.run(debug=True)
-    ```
+```python
+    app.run(debug=True)
+```
 
 Enabling the debug mode will make the server reload itself in the case
 of any code changes, and it also provides the very helpful Werkzeug
@@ -85,14 +85,13 @@ The best practice to use configurations is to have a bunch of default
 settings in app.py or via any object in our application itself and then
 override the same by loading it from the configuration file. So, the code
 will look like this:
-
-    ```python
-        app = Flask(__name__)
-        DEBUG = True
-        TESTING = True
-        app.config.from_object(__name__)
-        app.config.from_pyfile('/path/to/config/file')
-    ```
+```python
+    app = Flask(__name__)
+    DEBUG = True
+    TESTING = True
+    app.config.from_object(__name__)
+    app.config.from_pyfile('/path/to/config/file')
+```
 
 
 ## Class-based settings
@@ -107,43 +106,41 @@ We can have a default setting base class, and other classes can inherit this bas
 
 The following is an example of our default setting base class:
 
-    ```python
-        class BaseConfig(object):
-            """Base config class"""
-            SECRET_KEY = 'A random secret key'
-            DEBUG = True
-            TESTING = False
-            NEW_CONFIG_VARIABLE = 'my value'
-        
-        class ProductionConfig(BaseConfig):
-            """Production specific config"""
-            DEBUG = False
-            SECRET_KEY = open('/path/to/secret/file').read()
+```python
+    class BaseConfig(object):
+        """Base config class"""
+        SECRET_KEY = 'A random secret key'
+        DEBUG = True
+        TESTING = False
+        NEW_CONFIG_VARIABLE = 'my value'
     
-        class StagingConfig(BaseConfig):
-            """Staging specific config"""
-            DEBUG = True
-    
-        class DevelopmentConfig(BaseConfig):
-            """Development environment specific config"""
-            DEBUG = True
-            TESTING = True
-            SECRET_KEY = 'Another random secret key'
-    ```
+    class ProductionConfig(BaseConfig):
+        """Production specific config"""
+        DEBUG = False
+        SECRET_KEY = open('/path/to/secret/file').read()
+
+    class StagingConfig(BaseConfig):
+        """Staging specific config"""
+        DEBUG = True
+
+    class DevelopmentConfig(BaseConfig):
+        """Development environment specific config"""
+        DEBUG = True
+        TESTING = True
+        SECRET_KEY = 'Another random secret key'
+```
 
 The secret key is stored in a separate file because, for security concerns, it should not be a part of your version-control system.
 This should be kept in the local filesystem on the machine itself, whether it is your personal machine or a server.
 
 How it works…
 Now, we can use any of the preceding classes while loading the application's configuration via `from_object()`. Let's say that we save the preceding class-based configuration in a file named `configuration.py`:
-
-    ```python
-        app.config.from_object('configuration.DevelopmentConfig')
-    ```
+```python
+    app.config.from_object('configuration.DevelopmentConfig')
+```
 
 So, overall, this makes the management of configurations for different deployment
 environments flexible and easier.
-
 
 
 
