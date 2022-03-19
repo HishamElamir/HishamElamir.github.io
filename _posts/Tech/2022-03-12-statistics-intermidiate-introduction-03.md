@@ -6,7 +6,7 @@ description: An Introduction to Intermediate Statistics
 keywords: Statistics Math Advanced Data Analysis
 ---
 
-![Intermediate Stats](/images/blog/intermidiate-stats.png])
+![Intermediate Stats](/images/blog/intermidiate-stats.png)
 
 ## Introduction
 
