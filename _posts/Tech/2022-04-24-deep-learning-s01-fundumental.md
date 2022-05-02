@@ -2,7 +2,7 @@
 layout: post
 title: (Deep Learning) From Scratch Series: Introduction
 categories: Python DataScience DeepLearning MachineLearning
-description: How the dataset size can impact your deep learning model performance
+description: Build Deep Learning Models from Scratch
 keywords: Advanced Python DataScience DeepLearning MachineLearning
 ---
 
