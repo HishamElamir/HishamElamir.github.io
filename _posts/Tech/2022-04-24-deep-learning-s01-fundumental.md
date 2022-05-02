@@ -1,9 +1,6 @@
-
-
-
 ---
 layout: post
-title: (Deep Learning) Fundmentals Series: Introduction
+title: (Deep Learning) From Scratch Series: Introduction
 categories: Python DataScience DeepLearning MachineLearning
 description: How the dataset size can impact your deep learning model performance
 keywords: Advanced Python DataScience DeepLearning MachineLearning
