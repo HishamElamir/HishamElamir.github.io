@@ -1,8 +1,8 @@
 ---
 layout: post
-title: (Deep Learning) From Scratch Series: Introduction
+title: (Deep Learning from Scrach) Introduction
 categories: Python DataScience DeepLearning MachineLearning
-description: Build Deep Learning Models from Scratch
+description: Build Deep Learning from Scratch
 keywords: Advanced Python DataScience DeepLearning MachineLearning
 ---
 
