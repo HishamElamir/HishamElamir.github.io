@@ -55,13 +55,13 @@ Our model then learns how to discriminate between these two groups and outputs t
 For this reason, discriminative modeling is synonymous with `supervised learning`, or learning a function that maps an input to an output using a labeled dataset.
 
 And the mathematical notation of it, is as follows:
-> *Discriminative* modeling estimates $$p(y|x)$$ which is the probability of a label `y` given observation `x`.
+> *Discriminative* modeling estimates p(y|x) which is the probability of a label `y` given observation `x`.
 
 #### Generative Modeling
 Generative modeling is usually performed with an unlabeled dataset (as a form of `unsupervised learning`), though it can also be applied to a labeled dataset to learn how to generate observations from each distinct class.
 
 And the mathematical notation of it, is as follows:
-> *Generative* modeling estimates $$p(x)$$ which is the probability of observing observation `x`. If the dataset is labeled, we can also build a generative model that estimates the distribution $$p(x|y)$$.
+> *Generative* modeling estimates p(x) which is the probability of observing observation `x`. If the dataset is labeled, we can also build a generative model that estimates the distribution p(x|y).
 
 
 #### End of Comparison
@@ -91,17 +91,17 @@ ric modeling, and maximum likelihood estimation.
 
 > **Sample Space**. The sample space is the complete set of all values an observation `x` can take. In our previous example, the sample space consists of all points of latitude and longitude `x = (x1, x2)` on the world map. For example, `x = (31.233334, 30.033333)` is a point in the sample space (Cairo).
 
-> **Probability Density Function**. A probability density function (or simply density function), $$p_{x}$$, is a function that maps a point `x` in the sample space to a number between 0 and 1. The summation of the density function over all points in the sample space must equal 1 and can't exceed 1 at any case, so that it is a welldefined probability distribution. In the world map example, the density function of our model is 0 outside of the orange box and constant inside of the box.
+> **Probability Density Function**. A probability density function (or simply density function), p_{x}, is a function that maps a point `x` in the sample space to a number between 0 and 1. The summation of the density function over all points in the sample space must equal 1 and can't exceed 1 at any case, so that it is a welldefined probability distribution. In the world map example, the density function of our model is 0 outside of the orange box and constant inside of the box.
 
-While there is only one true density function pdata that is assumed to have generated the observable dataset, there are infinitely many density functions $$p_{model}$$ that we can use to estimate pdata. In order to structure our approach to finding a suitable $$p_{model}(X)$$ we can use a technique known as parametric modeling
+While there is only one true density function pdata that is assumed to have generated the observable dataset, there are infinitely many density functions `p_model` that we can use to estimate pdata. In order to structure our approach to finding a suitable `p_model(X)` we can use a technique known as parametric modeling
 
-> **Parametric Modeling**. A parametric model, $$p_{θ}(x)$$, is a family of density functions that can be described using a finite number of parameters, `θ`.
+> **Parametric Modeling**. A parametric model, p_{θ}(x), is a family of density functions that can be described using a finite number of parameters, `θ`.
 > The family of all possible boxes you could draw on Figure 1-5 is an example of a parametric model. In this case, there are four parameters: the coordinates of the bottomleft (`θ1`, `θ2`) and top-right (`θ3`, `θ4`) corners of the box. Thus, each density function pθ xin this parametric model (i.e., each box) can be
 uniquely represented by four numbers, `θ = (θ1, θ2, θ3, θ4)`.
 
 
-> **Likelihood**. The likelihood $$ℒ(θ∣x)$$ of a parameter set `θ` is a function that measures the plausibility of `θ`, given some observed point `x`.
-> It is defined as follows: $$ℒ(θ|x) = p_θ(x)$$
+> **Likelihood**. The likelihood ℒ(θ∣x) of a parameter set `θ` is a function that measures the plausibility of `θ`, given some observed point `x`.
+> It is defined as follows: `ℒ(θ|x) = p_θ(x)`
 > That is, the likelihood of `θ` given some observed point `x` is defined to be the value of the density function parameterized by `θ`, at the point `x`.
 > If we have a whole dataset `X` of independent observations then we can write:
 ℒ θ X = Π
