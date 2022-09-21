@@ -131,7 +131,7 @@ The region is defined by a 4-tuple, where coordinates are (left, upper, right, l
 | `region = region.transpose(Image.ROTATE_180)` | `region = cv2.transpose(region)` |
 | `pil_im.paste(region, box)` | `cv_im[20:100, 20:80] = region` |
 | `imshow(pil_im, cmap='gray')` | `imshow(cv_im, cmap='gray')` |
-| ![](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_paste.png) | ![](/images/blog/2022-09-21-computer-vision-general-introduction/opencv_empire_transpose.png) |
+| ![image paste](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_paste.png) | ![image paste](/images/blog/2022-09-21-computer-vision-general-introduction/opencv_empire_transpose.png) |
 
 
 ### Resize and Rotate
@@ -142,7 +142,7 @@ To resize an image, call resize() with a tuple giving the new size:
 | ------------ | ----------- |
 | `out = pil_im.resize((128,128))` | `out cv2.resize(cv_im, (128, 128), interpolation=cv2.INTER_AREA)` |
 | `imshow(out, cmap='gray')` | `imshow(out, cmap='gray')` |
-| ![](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_resize.png) | opencv |
+| ![image resize](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_resize.png) | ![image resize](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_resize.png) |
 
 In case of OpenCV and you wondered about the flag, visit the documentation to know more about it, but here are few of them.
 
@@ -155,9 +155,9 @@ To rotate an image, use counterclockwise angles and rotate() like this:
 
 | PILLOW | OpenCV |
 | ------------ | ----------- |
-| `out = pil_im.rotate(90)` | `cv2.rotate(src, cv2.cv2.ROTATE_90_CLOCKWISE)` |
+| `out = pil_im.rotate(90)` | `out = cv2.rotate(cv_im, cv2.ROTATE_90_COUNTERCLOCKWISE)` |
 | `imshow(out, cmap='gray')` | `imshow(out, cmap='gray')` |
-| ![image rotate](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_rotate.png) | opencv |
+| ![image rotate](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_rotate.png) | ![image rotate](/images/blog/2022-09-21-computer-vision-general-introduction/opencv_empire_rotate.png) |
 
 Some examples are shown in Figure 1-1. The leftmost image is the original, followed by a grayscale version, a rotated crop pasted in, and a thumbnail image.
 
