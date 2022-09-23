@@ -6,10 +6,10 @@ description: PILLOW vs OpenCV for Computer Vision
 keywords: Advanced Python OpenCV PILLOW computer vision image processing
 ---
 
-![Computer Vision Logo](/images/blog/computer-vision.png)
+![Computer Vision Logo](/images/blog/computer-vision.jpg)
 
 
-# Introduction 
+# 1.I Introduction 
 
 Welcome to new set of articles made for computer vision folks. 
 In this article, we will introduce you to processing playing with images. With extensive
@@ -20,7 +20,7 @@ scaling images, computing derivatives, plotting or saving results, and so on. We
 use these throughout the remainder of our articles journey.
 
 ---
-## 1.1 PILLOW vs. OpenCV
+# 1.1 PILLOW vs. OpenCV
 
 If you are using python, you will see that there're many packages that almost doing the same thing. And here, we will compare between two great packages that are commonly used in image processing and computer vision, **OpenCV** and **PILLOW**.
 
@@ -65,7 +65,7 @@ Note that:
 > **Hint:** You can go back to documentation to find out about the type of conversion you can do with both `convert()` and `cvtColor()` methods.
 
 
-### Convert Images to Another Format
+## Convert Images to Another Format
 
 Using the `save()` method, PIL can save images in most image file formats. Here’s an example that takes all image files in a list of filenames (filelist) and converts the images to JPEG files:
 
@@ -97,7 +97,7 @@ print(images)
 > **Another Hint:** The image path might be different if you are using another operating system, and because this was executed on windows, you will find few differences.
 
 
-### Create Thumbnails
+## Create Thumbnails
 
 Using PIL to create thumbnails is very simple. The `thumbnail()` method takes a tuple specifying the new size and converts the image to a thumbnail image with size that fits within the tuple.
 
@@ -112,7 +112,7 @@ To create a thumbnail with longest side 128 pixels, use the method like this:
 | ![thumbnail image](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_thumbtail.png) | ![thumbnail image](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_thumbtail.png) |
 
 
-### Copy and Paste Regions
+## Copy and Paste Regions
 
 Cropping a region from an image is done using the crop() method:
 
@@ -134,7 +134,7 @@ The region is defined by a 4-tuple, where coordinates are (left, upper, right, l
 | ![image paste](/images/blog/2022-09-21-computer-vision-general-introduction/pillow_empire_paste.png) | ![image paste](/images/blog/2022-09-21-computer-vision-general-introduction/opencv_empire_transpose.png) |
 
 
-### Resize and Rotate
+## Resize and Rotate
 
 To resize an image, call resize() with a tuple giving the new size:
 
@@ -162,7 +162,7 @@ To rotate an image, use counterclockwise angles and rotate() like this:
 Some examples are shown in Figure 1-1. The leftmost image is the original, followed by a grayscale version, a rotated crop pasted in, and a thumbnail image.
 
 ---
-## Viewing Images
+# 1.2 Playing with Images
 
 When working with mathematics and plotting graphs or drawing points, lines, and curves on images, Matplotlib is a good graphics library with much more powerful features than the plotting available in PIL. 
 
@@ -253,6 +253,6 @@ plot(x,y,'ks:') # black dotted line with square-markers
 
 ![different marks](/images/blog/2022-09-21-computer-vision-general-introduction/matplotlib_lines.png)
 
-# Summary
+# 1.S Summary
 
 Let's stop over here, because things will be more complicated. In the next article (stay tuned), will contain more complex image processing operations and how to deal with it in both OpenCV and PILLOW.
